@@ -13,8 +13,10 @@
 ###############################################################################
 # CMake project declarations
 ###############################################################################
-project(rtiroutingservice-plugin-helper C)
 cmake_minimum_required(VERSION 3.7.0)
+
+project(rtiroutingservice-plugin-helper C)
+
 
 set(RSHELPER_DIR                ${CMAKE_CURRENT_LIST_DIR})
 include(${RSHELPER_DIR}/cmake/rtiroutingservice_plugin.cmake)

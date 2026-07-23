@@ -13,8 +13,10 @@
 ###############################################################################
 # CMake project declarations
 ###############################################################################
-project(rtiroutingservice-adapter-mqtt C)
 cmake_minimum_required(VERSION 3.7.0)
+
+project(rtiroutingservice-adapter-mqtt C)
+
 
 include(${RSHELPER_DIR}/cmake/rtiroutingservice_plugin.cmake)
 
