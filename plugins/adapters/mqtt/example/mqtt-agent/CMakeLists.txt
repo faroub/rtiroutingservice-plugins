@@ -8,12 +8,13 @@
 # RTI is under no obligation to maintain or support the Software.  RTI shall
 # not be liable for any incidental or consequential damages arising out of the
 # use or inability to use the software.
-# 
-
-project(rtiroutingservice-adapter-mqtt-examples-agent C)
+ 
 cmake_minimum_required(VERSION 3.7.0)
 
-###############################################################################
+project(rtiroutingservice-adapter-mqtt-examples-agent C)
+
+
+
 
 set(MQTTAGENT_SRC_DIR           src)
 set(MQTTAGENT_INCLUDE_C         MqttAgent.h)
@@ -27,4 +28,4 @@ set(MQTTAGENT_INSTALL_DIRS      etc)
 
 configure_plugin_exec(mqtt-agent MQTTAGENT)
 
-###############################################################################
+
