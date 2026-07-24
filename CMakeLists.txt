@@ -9,8 +9,10 @@
 # not be liable for any incidental or consequential damages arising out of the
 # use or inability to use the software.
 # 
-project(rtiroutingservice-plugins C)
 cmake_minimum_required(VERSION 3.7.0)
+
+project(rtiroutingservice-plugins C)
+
 
 set(RSPLUGIN_PREFIX                 RTI_PLUGINS)
 
@@ -40,6 +42,8 @@ define_plugin_option(ENABLE_PROCESSOR_FWD
                      "Build plugin: Forwarding Engine"                  ${RTI_PLUGINS_ENABLE_ALL_PLUGINS})
 define_plugin_option(ENABLE_EXAMPLE_MQTTSHAPES
                      "Build example: MQTT Shapes"                       ${RTI_PLUGINS_ENABLE_ALL_EXAMPLES})
+define_plugin_option(ENABLE_EXAMPLE_MQTTAGENT
+                     "Build example: MQTT Agent"                        ${RTI_PLUGINS_ENABLE_ALL_EXAMPLES})
 # configure_plugin_env()
 
 set(RTI_MQTT_DIR            "${CMAKE_CURRENT_LIST_DIR}/plugins/adapters/mqtt"
@@ -56,6 +60,8 @@ set(RTI_PRCS_FWD_DIR      "${CMAKE_CURRENT_LIST_DIR}/plugins/processors/fwd"
     CACHE INTERNAL "Local clone of Forwarding Engine plugin")
 set(RTI_MQTTSHAPES_DIR      "${CMAKE_CURRENT_LIST_DIR}/examples/mqtt-shapes"
     CACHE INTERNAL "Local clone of CMAKE_CURRENT_LIST_DIR Shapes example")
+set(RTI_MQTTAGENT_DIR      "${CMAKE_CURRENT_LIST_DIR}/plugins/adapters/mqtt/example/mqtt-agent"
+    CACHE INTERNAL "Local clone of CMAKE_CURRENT_LIST_DIR Agent example")
 
 
 add_subdirectory(${RSHELPER_DIR})
@@ -86,4 +92,8 @@ endif()
 
 if(RTI_PLUGINS_ENABLE_EXAMPLE_MQTTSHAPES)
     add_subdirectory(${RTI_MQTTSHAPES_DIR})
+endif()
+
+if(RTI_PLUGINS_ENABLE_EXAMPLE_MQTTAGENT)
+    add_subdirectory(${RTI_MQTTAGENT_DIR})
 endif()

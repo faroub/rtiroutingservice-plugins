@@ -9,9 +9,10 @@
 # not be liable for any incidental or consequential damages arising out of the
 # use or inability to use the software.
 # 
+cmake_minimum_required(VERSION 3.7.0)
 
 project(rtiroutingservice-example-mqtt-shapes C)
-cmake_minimum_required(VERSION 3.7.0)
+
 
 include(${RSHELPER_DIR}/cmake/rtiroutingservice_plugin.cmake)
 

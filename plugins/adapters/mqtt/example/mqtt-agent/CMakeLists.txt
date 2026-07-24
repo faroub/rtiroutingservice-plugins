@@ -28,4 +28,20 @@ set(MQTTAGENT_INSTALL_DIRS      etc)
 
 configure_plugin_exec(mqtt-agent MQTTAGENT)
 
+target_include_directories(mqtt-agent PRIVATE
+    ${RTI_MQTT_INCLUDES}
+)
 
+target_compile_definitions(mqtt-agent PRIVATE
+    ${RTI_MQTT_DEFINES}
+)
+
+add_dependencies(mqtt-agent
+    rtiroutingservice-adapter-mqtt-idl-rtiadapt_mqtt_types
+    rtiroutingservice-adapter-mqtt-idl-rtiadapt_mqtt_types_message
+    rtiroutingservice-adapter-mqtt-idl-rtiadapt_mqtt_types_client
+    rtiroutingservice-adapter-mqtt-idl-rtiadapt_mqtt_types_adapter
+)
+target_link_libraries(mqtt-agent PRIVATE
+    rtirsmqttadapter-shared
+)
