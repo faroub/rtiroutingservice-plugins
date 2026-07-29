@@ -224,7 +224,7 @@ RTI_TSFM_Field_PrimitiveTransformation_serialize(
             goto done;
         }
 
-        sprintf(self->state->msg_payload, 
+        snprintf(self->state->msg_payload, self->state->msg_payload_size + 1, 
                 self->config->serialization_format,
                 v_short);
 
@@ -245,7 +245,7 @@ RTI_TSFM_Field_PrimitiveTransformation_serialize(
             goto done;
         }
 
-        sprintf(self->state->msg_payload, 
+        snprintf(self->state->msg_payload, self->state->msg_payload_size + 1, 
                 self->config->serialization_format,
                 v_long);
         
@@ -266,7 +266,7 @@ RTI_TSFM_Field_PrimitiveTransformation_serialize(
             goto done;
         }
 
-        sprintf(self->state->msg_payload, 
+        snprintf(self->state->msg_payload, self->state->msg_payload_size + 1, 
                 self->config->serialization_format,
                 v_ushort);
         
@@ -287,7 +287,7 @@ RTI_TSFM_Field_PrimitiveTransformation_serialize(
             goto done;
         }
 
-        sprintf(self->state->msg_payload, 
+        snprintf(self->state->msg_payload, self->state->msg_payload_size + 1, 
                 self->config->serialization_format,
                 v_ulong);
         
@@ -308,7 +308,7 @@ RTI_TSFM_Field_PrimitiveTransformation_serialize(
             goto done;
         }
 
-        sprintf(self->state->msg_payload, 
+        snprintf(self->state->msg_payload, self->state->msg_payload_size + 1, 
                 self->config->serialization_format,
                 v_float);
         
@@ -329,7 +329,7 @@ RTI_TSFM_Field_PrimitiveTransformation_serialize(
             goto done;
         }
 
-        sprintf(self->state->msg_payload, 
+        snprintf(self->state->msg_payload, self->state->msg_payload_size + 1, 
                 self->config->serialization_format,
                 v_double);
         
@@ -350,7 +350,7 @@ RTI_TSFM_Field_PrimitiveTransformation_serialize(
             goto done;
         }
 
-        sprintf(self->state->msg_payload, 
+        snprintf(self->state->msg_payload, self->state->msg_payload_size + 1, 
                 self->config->serialization_format,
                 v_bool);
         
@@ -371,7 +371,7 @@ RTI_TSFM_Field_PrimitiveTransformation_serialize(
             goto done;
         }
 
-        sprintf(self->state->msg_payload, 
+        snprintf(self->state->msg_payload, self->state->msg_payload_size + 1, 
                 self->config->serialization_format,
                 v_char);
         
@@ -392,7 +392,7 @@ RTI_TSFM_Field_PrimitiveTransformation_serialize(
             goto done;
         }
 
-        sprintf(self->state->msg_payload, 
+        snprintf(self->state->msg_payload, self->state->msg_payload_size + 1, 
                 self->config->serialization_format,
                 v_octet);
         
@@ -415,7 +415,7 @@ RTI_TSFM_Field_PrimitiveTransformation_serialize(
             goto done;
         }
 
-        sprintf(self->state->msg_payload, 
+        snprintf(self->state->msg_payload, self->state->msg_payload_size + 1, 
                 self->config->serialization_format,
                 v_string);
         
@@ -440,7 +440,7 @@ RTI_TSFM_Field_PrimitiveTransformation_serialize(
             goto done;
         }
 
-        sprintf(self->state->msg_payload, 
+        snprintf(self->state->msg_payload, self->state->msg_payload_size + 1, 
                 self->config->serialization_format,
                 v_llong);
         
@@ -461,7 +461,7 @@ RTI_TSFM_Field_PrimitiveTransformation_serialize(
             goto done;
         }
 
-        sprintf(self->state->msg_payload, 
+        snprintf(self->state->msg_payload, self->state->msg_payload_size + 1, 
                 self->config->serialization_format,
                 v_ullong);
         
@@ -482,7 +482,7 @@ RTI_TSFM_Field_PrimitiveTransformation_serialize(
             goto done;
         }
 
-        sprintf(self->state->msg_payload, 
+        snprintf(self->state->msg_payload, self->state->msg_payload_size + 1, 
                 self->config->serialization_format,
                 v_ldouble);
         
@@ -503,7 +503,7 @@ RTI_TSFM_Field_PrimitiveTransformation_serialize(
             goto done;
         }
 
-        sprintf(self->state->msg_payload, 
+        snprintf(self->state->msg_payload, self->state->msg_payload_size + 1, 
                 self->config->serialization_format,
                 v_wchar);
         
@@ -535,8 +535,11 @@ RTI_TSFM_Field_PrimitiveTransformation_serialize(
             cur_str = v_wstring + i;
             cur_buf = self->state->msg_payload + str_len;
 
-            sprintf(cur_buf, self->config->serialization_format, cur_str);
-                
+            snprintf(cur_buf,
+                    (self->state->msg_payload_size + 1) - str_len,
+                    self->config->serialization_format,
+                    cur_str);
+
             str_len += RTI_TSFM_String_length(cur_buf);
         }
 

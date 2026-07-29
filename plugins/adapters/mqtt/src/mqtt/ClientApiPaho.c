@@ -310,12 +310,14 @@ RTI_MQTT_ClientMqttApi_Paho_connect(struct RTI_MQTT_Client *self)
     RTI_MQTT_LOG_1("  - keep alive period:","%d",conn_opts.keepAliveInterval)
     RTI_MQTT_LOG_1("  - connection timeout:","%d",conn_opts.connectTimeout)
     RTI_MQTT_LOG_1("  - username:","%s",conn_opts.username)
-    RTI_MQTT_LOG_1("  - password:","%s",conn_opts.password)
+    RTI_MQTT_LOG_1("  - password:","%s",
+            (conn_opts.password != NULL) ? "<redacted>" : "(null)")
     if (conn_opts.ssl != NULL)
     {
         RTI_MQTT_LOG_1("  - CA:","%s",conn_opts.ssl->trustStore)
         RTI_MQTT_LOG_1("  - ID:","%s",conn_opts.ssl->keyStore)
-        RTI_MQTT_LOG_1("  - Key:","%s",conn_opts.ssl->privateKey)
+        RTI_MQTT_LOG_1("  - Key:","%s",
+                (conn_opts.ssl->privateKey != NULL) ? "<redacted>" : "(null)")
     }
     if (MQTTASYNC_SUCCESS != MQTTAsync_connect(self->client, &conn_opts))
     {

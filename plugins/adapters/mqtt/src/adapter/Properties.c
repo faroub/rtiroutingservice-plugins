@@ -591,11 +591,11 @@ RTI_MQTT_ClientConfig_parse_from_properties(
     RTI_RS_MQTT_lookup_property(properties, RTI_MQTT_PROPERTY_CLIENT_PASSWORD,
         struct DDS_OctetSeq password = DDS_SEQUENCE_INITIALIZER;
         DDS_Boolean failed = DDS_BOOLEAN_FALSE;
-        RTI_MQTT_LOG_1("password:","%s",pval);
+        RTI_MQTT_LOG_1("password:","%s","<redacted>");
         if (DDS_RETCODE_OK !=
                 DDS_OctetSeq_from_string(pval, &password))
         {
-            RTI_MQTT_ERROR_1("failed to convert string to OctetSeq:","%s",pval)
+            RTI_MQTT_ERROR("failed to convert password string to OctetSeq")
             goto done;
         }
         if (config->password != NULL)
